@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api import routes_auth, routes_users, routes_sources, routes_posts, routes_analysis, routes_reports, routes_dashboard
-from app.models import *  # noqa
+from app.models import (  # noqa: F401 - import models to register them with SQLAlchemy metadata
+    Role, User, Platform, SourceConfig, Post, PostKeyword, PostEntity,
+    Comment, PostAnalysis, Keyword, Entity, SyncJob, Alert, AuditLog,
+)
 
 app = FastAPI(title="Social Media Post Collection & Analysis System", version="1.0.0")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
